@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+#        encrypt:
+#          enabled: true
+        git:
+          uri: https://github.com/woojang1230/config-server-files
+#        bootstrap: true
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

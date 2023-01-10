@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: "config-client"
+  profiles:
+    active: local
+  config:
+    import: optional:configserver:http://localhost:8080
+server:
+  port: ${service.port}
+service:
+  client:
+    text: ${service.text}
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

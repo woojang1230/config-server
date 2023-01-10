@@ -1,0 +1,4 @@
+rootProject.name = 'spring-config-server'
+include 'config-server'
+include 'config-client'
+
