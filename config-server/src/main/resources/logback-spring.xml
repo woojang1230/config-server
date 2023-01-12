@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+
+    <!-- Appenders -->
+<!--    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <Pattern>%d %5p [%c] %m%n</Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:50000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+        </encoder>
+    </appender>
+
+<!--    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <Pattern>%d %5p %m%n</Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!-- Logger -->
+    <logger name="kr.co.kumsung.pudding.service.purunet.ischool" level="DEBUG" appender-ref="LOGSTASH" />
+    <logger name="kr.co.kumsung.pudding.service.purunet.ksprod" level="DEBUG" appender-ref="LOGSTASH" />
+    <logger name="jdbc.sqlonly" level="DEBUG" appender-ref="LOGSTASH" />
+    <logger name="jdbc.resultsettable" level="DEBUG" appender-ref="LOGSTASH" />
+
+    <!-- Root Logger -->
+    <root level="DEBUG">
+        <appender-ref ref="LOGSTASH" />
+    </root>
+</configuration>

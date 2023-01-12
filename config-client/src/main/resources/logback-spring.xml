@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+     Appenders
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>elk-%d %5p [%c] %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+<!--        <addDefaultStatusListener>false</addDefaultStatusListener>-->
+        <destination>localhost:50000</destination>
+        <param name="Encoding" value="UTF-8"/>
+<!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+<!--            <providers>-->
+<!--                <mdc />-->
+<!--                <pattern>-->
+<!--                    &lt;!&ndash; 아래와 같은 키밸류 타입이 들어가면서 나중에 키바나에서 찾기 수월함&ndash;&gt;-->
+<!--                    <pattern>{"logs-%d":"%5p [%c] %m%n"}</pattern>-->
+<!--                </pattern>-->
+<!--                <timestamp />-->
+<!--                &lt;!&ndash;<version />&ndash;&gt;-->
+<!--                <context />-->
+<!--                <threadName />-->
+<!--                <logLevel />-->
+<!--                <message />-->
+<!--                <loggerName />-->
+<!--                <logstashMarkers />-->
+<!--                <stackTrace />-->
+<!--                <callerData />-->
+<!--            </providers>-->
+        </encoder>
+    </appender>
+
+<!--    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <Pattern>%d %5p %m%n</Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!-- Logger -->
+<!--    <logger name="kr.co.kumsung.pudding.service.purunet.ischool" level="DEBUG" appender-ref="LOGSTASH" />-->
+<!--    <logger name="kr.co.kumsung.pudding.service.purunet.ksprod" level="DEBUG" appender-ref="LOGSTASH" />-->
+<!--    <logger name="jdbc.sqlonly" level="DEBUG" appender-ref="LOGSTASH" />-->
+<!--    <logger name="jdbc.resultsettable" level="DEBUG" appender-ref="LOGSTASH" />-->
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="console" />
+    </root>
+</configuration>
