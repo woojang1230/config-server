@@ -1,7 +1,5 @@
 package com.woojang.springconfigclient;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 @RefreshScope
 @RestController
 public class ConfigClientRestController {
-    private static final Log LOG = LogFactory.getLog( ConfigClientRestController.class );
     private final String serviceProfile;
     private final String port;
     private final String dburl;
@@ -29,7 +26,7 @@ public class ConfigClientRestController {
 
     @GetMapping("/service/text")
     public ResponseEntity<String> getText() {
-        LOG.info("HIHIHI!!!!!!!!!!");
+        log.info("HIHIHI!!!!!!!!!!");
         return ResponseEntity.ok(this.dburl);
     }
 }
